@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+from blogging.models import Post
+
+
+def home(request):
+    latest_posts = Post.objects.all().order_by("-release_date")
+    context = {'posts': latest_posts[:5]}
+    return render(request, "home.html", context)

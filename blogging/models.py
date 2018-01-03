@@ -20,9 +20,10 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     summary = models.CharField(max_length=250)
     post = models.TextField()
-    image = models.ImageField(null=True)
-    url = models.URLField(null=True)
+    image = models.ImageField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
     release_date = models.DateTimeField()
+    category = models.ManyToManyField(Category)
 
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

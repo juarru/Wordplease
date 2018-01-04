@@ -1,10 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block head_title %} Wordplease - Blogging Web {% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
 </head>
 <body>
+    <div class="menu">
+        <a href="{% url 'home' %}">Home</a>
+    </div>
     {% block content %} {% endblock %}
 </body>
 </html>

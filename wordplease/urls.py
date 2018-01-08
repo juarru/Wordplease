@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from blogging.views import home, post_detail
+from bloggers.views import login, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path('blogs/<int:pk>', post_detail, name="post_detail_route")
+    path('blogs/<int:pk>', post_detail, name="post_detail_route"),
+    path('login', login, name="login"),
+    path('logout', logout, name="logout")
 ]

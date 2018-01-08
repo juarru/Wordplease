@@ -18,7 +18,11 @@
         </body>
         <footer>
             <div>
-               {{ post.category_id.name }}
+               <ul>
+                    {% for category in post.category.all %}
+                        <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
             </div>
             <div>
                 {{ post.release_date | date:"d-m-Y H:i" }}

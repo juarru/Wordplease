@@ -12,7 +12,13 @@
                 <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}"/>
                 <img src="{{ post.url }}" alt="{{ post.title }}" title="{{ post.title }}"/>
             </body>
-            <footer>{{ post.summary }}</footer>
+            <footer>{{ post.summary }} |
+                <ul>
+                    {% for category in post.category.all %}
+                        <li>{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+            </footer>
         </article>
     {% endfor %}
 {% endblock %}

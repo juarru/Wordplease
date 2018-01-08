@@ -9,7 +9,7 @@ def home(request):
     return render(request, "home.html", context)
 
 def post_detail(request, pk):
-    target_post = Post.objects.filter(pk=pk) #.select_related("category")
+    target_post = Post.objects.filter(pk=pk)#.select_related("category")
     if len(target_post) == 0:
         return render(request, "404.html", status=404)
     else:

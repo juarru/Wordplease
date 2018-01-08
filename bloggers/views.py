@@ -3,11 +3,14 @@ from django.contrib.auth import authenticate, login as django_login, logout as d
 from django.shortcuts import render, redirect
 from django.views import View
 
+from bloggers.forms import LoginForm
+
 
 class LoginView(View):
 
     def get(self, request):
-        return render(request, "login.html")
+        context = {'form': LoginForm()}
+        return render(request, "login.html", context)
 
     def post(self, request):
         username = request.POST.get('login_username')

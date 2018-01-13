@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -17,6 +18,7 @@ class Category(models.Model):
 
 class Post(models.Model):
 
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
     title = models.CharField(max_length=100)
     summary = models.CharField(max_length=250)
     post = models.TextField()

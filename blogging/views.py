@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.urls import reverse
+from django.views import View
 
+from blogging.forms import PostForm
 from blogging.models import Post
+from django.contrib import messages
 
 
 def home(request):
@@ -16,3 +20,20 @@ def post_detail(request, pk):
         post = target_post[0]
         context = {'post': post}
         return render(request, "post_detail.html", context)
+
+class NewPostView(View):
+
+    def get(self, request):
+        form = PostForm()
+        return render(request, "post_form.html", {'form': form})
+
+    def post(self, request):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save()
+            form = PostForm()
+            url = reverse("post_detail_route", args=[post.pk])
+            message = "Post created successfully"
+            message += '<a href="{0}"> - View</a>'.format(url)
+            messages.success(request, message)
+        return render(request, "post_form.html", {'form': form})

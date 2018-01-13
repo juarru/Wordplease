@@ -126,6 +126,9 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, "static")
 ]
 
+# Login URL
+LOGIN_URL = "/login"
+
 # Show SQL queries log
 # LOGGING = {
 #     'version': 1,

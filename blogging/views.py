@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
@@ -21,7 +22,7 @@ def post_detail(request, pk):
         context = {'post': post}
         return render(request, "post_detail.html", context)
 
-class NewPostView(View):
+class NewPostView(LoginRequiredMixin, View):
 
     def get(self, request):
         form = PostForm()

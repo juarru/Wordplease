@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Wordplease: Login {% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>All blogs</h1>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% for user in users %}
+
+                    <p>
+                        <a href="{% url 'blog_author_page' username=user.username %}">{{ user.username }}</a>
+                    </p>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

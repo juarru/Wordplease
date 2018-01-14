@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import ListView
 
 from bloggers.forms import LoginForm
 
@@ -31,4 +33,12 @@ class LoginView(View):
 def logout(request):
     django_logout(request)
     return redirect("login")
+
+class AuthorView(ListView):
+    model = User
+    template_name = "blogs_authors.html"
+
+    def get_queryset(self):
+        queryset = super(AuthorView, self).get_queryset()
+        return queryset.order_by('username')
 

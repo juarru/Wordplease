@@ -6,7 +6,7 @@
     {% for post in posts %}
         <article>
             <header>
-                <a href="{% url 'post_detail_route' post.pk %}" title="{{ post.title }}"/>
+                <a href="{% url 'post_detail_route' username=post.author.username pk=post.id %}" title="{{ post.title }}"/>
             </header>
             <body>
                 <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}"/>

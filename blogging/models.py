@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 
 # Create your models here.
@@ -37,3 +38,8 @@ class Post(models.Model):
         """
 
         return self.title
+
+    def clean(self):
+        # Don't allow empty image or video.
+        if (self.image == '' or self.image == None) and (self.url == '' or self.url == None):
+            raise ValidationError(_('You must set and image or video.'))

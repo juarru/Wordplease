@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # My apps
     'blogging',
     'bloggers',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,11 @@ STATICFILES_DIR = [
 
 # Login URL
 LOGIN_URL = "/login"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
 
 # Show SQL queries log
 # LOGGING = {

@@ -19,6 +19,9 @@ from django.urls import path
 from blogging.views import Home, PostDetail, NewPostView, AuthorPostView
 from bloggers.views import LoginView, logout, AuthorView, SignUpView
 
+from rest_framework.authtoken import views
+from bloggers.api import AuthorAPI, AuthorDetailAPI
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name="home"),
@@ -28,5 +31,12 @@ urlpatterns = [
     path('login', LoginView.as_view(), name="login"),
     path('logout', logout, name="logout"),
     path('signup', SignUpView.as_view(), name="signup"),
-    path('new-post', NewPostView.as_view(), name="newpost")
+    path('new-post', NewPostView.as_view(), name="newpost"),
+
+    # API
+    path('api/1.0/users/get-token/', views.obtain_auth_token, name="token_api"),
+    path('api/1.0/authors/', AuthorAPI.as_view(), name='author_api'),
+    path('api/1.0/authors/<slug:pk>', AuthorDetailAPI.as_view(), name="author_detail_api"),
+
+
 ]

@@ -42,22 +42,22 @@ class BlogAuthorListAPI(ListAPIView):
 
         # Filtering acording kwargs
         username_arg = self.kwargs.get('username')
-        queryset = queryset.filter(user__username=username_arg)
+        queryset = queryset.filter(author__username=username_arg)
         search = self.request.query_params.get('search', None)
         title = self.request.query_params.get('title', None)
-        body = self.request.query_params.get('body', None)
+        body = self.request.query_params.get('post', None)
 
         if search != None and title == None and body == None:
-            queryset = queryset.filter(Q(title__icontains=search) | Q(body__icontains=search))
+            queryset = queryset.filter(Q(title__icontains=search) | Q(post__icontains=search))
         if title != None:
             queryset = queryset.filter(title__icontains=title)
         if body != None:
-            queryset = queryset.filter(body__icontains=body)
+            queryset = queryset.filter(post__icontains=body)
 
         queryset = queryset.filter()
         if not (self.request.user.is_authenticated and (self.request.user.username == username_arg or self.request.user.is_superuser)):
             now = datetime.datetime.now()
-            queryset = queryset.filter(publication_date__lte=now.strftime("%Y-%m-%d"))
+            queryset = queryset.filter(release_date__lte=now.strftime("%Y-%m-%d"))
 
         # Ordering
         order_by = self.request.query_params.get('order_by', None)
@@ -86,14 +86,14 @@ class PostsListAPI(ListCreateAPIView):
         if user.is_authenticated and user.is_superuser:
             return queryset.order_by('-release_date')
         else:
-            return queryset.filter(publication_date__lte=now.strftime("%Y-%m-%d")).order_by('-release_date')
+            return queryset.filter(release_date__lte=now.strftime("%Y-%m-%d")).order_by('-release_date')
 
     def get_serializer_class(self):
         return PostListSerializer if self.request.method == "GET" else PostSerializer
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(user=self.request.user)
+            serializer.save(author=self.request.user)
 
 class PostDetailAPI(RetrieveUpdateDestroyAPIView):
     authentication_classes = (TokenAuthentication,)

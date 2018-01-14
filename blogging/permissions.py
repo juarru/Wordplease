@@ -12,11 +12,11 @@ class PostPermission(BasePermission):
         now = datetime.datetime.now()
         permission = False
         if request.method == "GET":
-            if obj.publication_date.replace(tzinfo=None) <= now:
+            if obj.release_date.replace(tzinfo=None) <= now:
                 permission = True
             else:
                 if (obj.user == request.user) or request.user.is_superuser:
                     permission = True
-        elif (obj.user == request.user) or request.user.is_superuser:
+        elif (obj.author == request.user) or request.user.is_superuser:
             permission = True
         return permission

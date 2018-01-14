@@ -18,7 +18,7 @@ class BlogListSerializer(serializers.ModelSerializer):
     blog_url = serializers.SerializerMethodField('build_blog_url')
 
     def build_blog_url(self, obj):
-        return reverse("api_blogs_user_list", kwargs={'username':obj.username})
+        return reverse("author_blogs_list_api", kwargs={'username':obj.username})
 
     class Meta:
         model = User

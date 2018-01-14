@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blogging',
     'bloggers',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

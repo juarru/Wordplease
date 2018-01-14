@@ -21,6 +21,7 @@ from bloggers.views import LoginView, logout, AuthorView, SignUpView
 
 from rest_framework.authtoken import views
 from bloggers.api import AuthorAPI, AuthorDetailAPI
+from blogging.api import BlogListAPI, BlogAuthorListAPI, PostsListAPI, PostDetailAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,9 +35,14 @@ urlpatterns = [
     path('new-post', NewPostView.as_view(), name="newpost"),
 
     # API
-    path('api/1.0/users/get-token/', views.obtain_auth_token, name="token_api"),
+    path('api/1.0/authors/get-token/', views.obtain_auth_token, name="token_api"),
     path('api/1.0/authors/', AuthorAPI.as_view(), name='author_api'),
     path('api/1.0/authors/<slug:pk>', AuthorDetailAPI.as_view(), name="author_detail_api"),
 
+    path('api/1.0/blogs/', BlogListAPI.as_view(), name="blogs_list_api"),
+    path('api/1.0/blogs/<slug:username>', BlogAuthorListAPI.as_view(), name="author_blogs_list_api"),
+
+    path('api/1.0/posts/', PostsListAPI.as_view(), name="post_list_api"),
+    path('api/1.0/posts/<int:pk>', PostDetailAPI.as_view(), name="post_detail_api"),
 
 ]

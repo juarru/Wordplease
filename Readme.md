@@ -22,9 +22,9 @@ In these cases you must add a "Headers" params like next:
 
 **Note: The user must be previously registered in the application**
 
-**Method:** POST
-**URL:** [http://localhost:8000/api/1.0/authors/get-token/](http://localhost:8000/api/1.0/authors/get-token/ "Get user Token")
-**Body:**
+**Method:** POST  
+**URL:** [http://localhost:8000/api/1.0/authors/get-token/](http://localhost:8000/api/1.0/authors/get-token/ "Get user Token")  
+**Body:**  
 
 ```json
 {
@@ -35,9 +35,9 @@ In these cases you must add a "Headers" params like next:
 
 ### How to register an author
 
-**Method:** POST
-**URL:** [http://localhost:8000/api/1.0/authors/](http://localhost:8000/api/1.0/authors/)
-**Body:**
+**Method:** POST  
+**URL:** [http://localhost:8000/api/1.0/authors/](http://localhost:8000/api/1.0/authors/)  
+**Body:**  
 
 ```json
 {
@@ -51,18 +51,18 @@ In these cases you must add a "Headers" params like next:
 
 ### Getting available blogs
 
-**Method:** GET
-**URL:** [http://localhost:8000/api/1.0/blogs/](http://localhost:8000/api/1.0/blogs/ "All Blogs")
+**Method:** GET  
+**URL:** [http://localhost:8000/api/1.0/blogs/](http://localhost:8000/api/1.0/blogs/ "All Blogs")  
 
 ### Getting posts from an author
 
-**Method:** GET
-**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")
+**Method:** GET  
+**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")  
 
 ### How to search for a post within a blog
 
-**Method:** GET
-**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")
+**Method:** GET  
+**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")  
 
 **The following query_params are allowed:**
 * **search:** This will allow you to look in the **title OR body** fields of posts.
@@ -83,8 +83,8 @@ In these cases you must add a "Headers" params like next:
 
 ### How to order the posts
 
-**Method:** GET
-**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")
+**Method:** GET  
+**URL:** [http://localhost:8000/api/1.0/blogs/\<username\>](http://localhost:8000/api/1.0/blogs/admin "Author Blog")  
 
 Simply add the query_param **order_by**. Possible values are:
 
@@ -93,7 +93,7 @@ Simply add the query_param **order_by**. Possible values are:
 * **-title**, will return results in descending order.
 * **-publication_date**, will return results in descending order.
 
-**Example:**
+**Example:**  
 [http://localhost:8000/api/1.0/blogs/\<username\>?order_by=title](http://localhost:8000/api/1.0/blogs/admin?order_by=title "Author's Blog posts sorted by title in ascending order")
 
 
@@ -101,9 +101,9 @@ Simply add the query_param **order_by**. Possible values are:
 
 **Authentication needed**. Follow the "Get the token" instructions before
 
-**Method:** POST
-**URL:** [http://localhost:8000/api/1.0/posts/](http://localhost:8000/api/1.0/posts/)
-**Body:**
+**Method:** POST  
+**URL:** [http://localhost:8000/api/1.0/posts/](http://localhost:8000/api/1.0/posts/)  
+**Body:**  
 
 ```json
 {
@@ -133,10 +133,10 @@ Or
 
 ### How to retreive post detail
 
-**Method:** GET
-**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)
+**Method:** GET  
+**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)  
 
-**Notes:**
+**Notes:**  
 If you are not authenticated you will see only published posts.
 I you are authenticated and if you are a superuser or if you are the owner of the post you will see it even if the post is not published.
 
@@ -145,9 +145,9 @@ I you are authenticated and if you are a superuser or if you are the owner of th
 
 **Authentication needed**. Follow the "Get the token" instructions before
 
-**Method:** PUT
-**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)
-**Body:**
+**Method:** PUT  
+**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)  
+**Body:**  
 
 ```json
 {
@@ -168,8 +168,8 @@ If you are authenticated and if you are a superuser or if you are the owner of t
 
 **Authentication needed**. Follow the "Get the token" instructions before
 
-**Method:** DELETE
-**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)
+**Method:** DELETE  
+**URL:** [http://localhost:8000/api/1.0/posts/\<id\>](http://localhost:8000/api/1.0/posts/\<id\>)  
 
 **Notes:**
 

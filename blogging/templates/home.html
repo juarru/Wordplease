@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 
+{% block head_title %} Latest Posts {% endblock %}
 {% block content %}
-    <h1>Wellcome to Wordplease</h1>
-    <h2>Latest posts</h2>
-    {% for post in posts %}
-        <article>
-            <header>
-                <a href="{% url 'post_detail_route' username=post.author.username pk=post.id %}" title="{{ post.title }}"/>
-            </header>
-            <body>
-                <img src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}"/>
-                <img src="{{ post.url }}" alt="{{ post.title }}" title="{{ post.title }}"/>
-            </body>
-            <footer>{{ post.summary }} |
-                <ul>
-                    {% for category in post.category.all %}
-                        <li>{{ category.name }}</li>
-                    {% endfor %}
-                </ul>
-            </footer>
-        </article>
-    {% endfor %}
+    <div class="container">
+        <h1>Wellcome to Wordplease</h1>
+        <h2>Latest posts</h2>
+        {% for post in object_list %}
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="border border-primary">
+
+
+                    <h2><a href="{% url 'post_detail_route' username=post.author.username pk=post.id %}">{{ post.title }}</a></h2>
+                    <p>Published at: {{ post.release_date|date }}</p>
+                    {% if request.user == post.user %}
+                        <p>Created at: {{ post.created_at|date }}</p>
+                    {% endif %}
+
+                        <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
+
+                    <h3>Summary</h3>
+                    <p>{{ post.summary|truncatechars:50 }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

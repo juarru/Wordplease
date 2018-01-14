@@ -6,7 +6,7 @@
         <h1>{{ username|capfirst }} Posts</h1>
         <hr>
         <div class="row">
-            {% for post in posts %}
+            {% for post in object_list %}
 
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="border border-primary">

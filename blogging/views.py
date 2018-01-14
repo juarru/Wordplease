@@ -10,15 +10,14 @@ from blogging.models import Post
 from django.contrib import messages
 
 import datetime
-from django.utils import timezone
 
 class Home(ListView):
     model = Post
     template_name = "home.html"
 
     def get_queryset(self):
-        # now = datetime.datetime.now()
-        now = timezone.now()
+        now = datetime.datetime.now()
+        # now = timezone.now()
         queryset = super(Home, self).get_queryset()
         return queryset.filter(release_date__lte=now.strftime("%Y-%m-%d")).order_by('-release_date')
 
@@ -27,8 +26,8 @@ class PostDetail(DetailView):
     template_name = "post_detail.html"
 
     def get_queryset(self):
-        # now = datetime.datetime.now()
-        now = timezone.now()
+        now = datetime.datetime.now()
+        # now = timezone.now()
         queryset = super(PostDetail, self).get_queryset()
         username = self.kwargs.get("username")
         user = get_object_or_404(User, username__iexact=username)
@@ -58,8 +57,8 @@ class AuthorPostView(ListView):
     template_name = "author_posts.html"
 
     def get_queryset(self):
-        # now = datetime.datetime.now()
-        now = timezone.now()
+        now = datetime.datetime.now()
+        # now = timezone.now()
         queryset = super(AuthorPostView, self).get_queryset()
         username = self.kwargs.get("username")
         user = get_object_or_404(User, username__iexact=username)

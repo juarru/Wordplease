@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from blogging.views import Home, PostDetail, NewPostView, AuthorPostView
-from bloggers.views import LoginView, logout, AuthorView
+from bloggers.views import LoginView, logout, AuthorView, SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,6 @@ urlpatterns = [
     path('blogs/<slug:username>/<int:pk>', PostDetail.as_view(), name="post_detail_route"),
     path('login', LoginView.as_view(), name="login"),
     path('logout', logout, name="logout"),
+    path('signup', SignUpView.as_view(), name="signup"),
     path('new-post', NewPostView.as_view(), name="newpost")
 ]
